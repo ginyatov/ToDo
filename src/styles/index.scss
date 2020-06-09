@@ -1,0 +1,139 @@
+@import "./reset.scss";
+@import "./media.scss";
+
+body {
+  padding-top: 50px;
+}
+.ant-select-arrow {
+  left: auto;
+}
+.ant-list-item-action-split {
+  display: none;
+}
+.ant-modal-close {
+  left: auto;
+}
+.ant-modal-close-x {
+  width: 28px;
+  line-height: 28px;
+  height: 28px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.main-title {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.todo-list {
+  margin-bottom: 50px;
+}
+.todo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  @include media("<=tablet") {
+    width: 72%;
+    word-break: break-word;
+  }
+  &-modal {
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    &__description {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.2;
+      span {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  &-helper {
+    &__header {
+      display: flex;
+      justify-content: flex-end;
+      @include media("<=phone") {
+        flex-direction: column;
+      }
+    }
+    &__select {
+      margin-right: 10px;
+      min-width: 150px;
+      @include media("<=phone") {
+        width: 100% !important;
+      }
+    }
+    &__completedAll {
+      @include media("<=phone") {
+        margin: 7px 0;
+      }
+    }
+    &__footer {
+      text-align: center;
+      font-size: 12px;
+    }
+    &__goodJob {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 15px;
+      svg {
+        font-size: 40px;
+        color: rgb(25, 204, 31);
+      }
+      b {
+        margin-top: 5px;
+      }
+    }
+  }
+  &__title,
+  &__status {
+    cursor: pointer;
+  }
+  &__status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    margin-top: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    transition: color 0.3s;
+    &:hover {
+      color: #d01b1b;
+    }
+  }
+
+  &_completed {
+    .todo__title {
+      text-decoration: line-through;
+      color: rgb(116, 109, 109);
+    }
+    .todo__status {
+      border-color: green;
+      svg {
+        fill: green;
+      }
+    }
+  }
+}
+@include media("<=tablet") {
+  .ant-modal-body {
+    .todo {
+      width: 100%;
+    }
+  }
+}
