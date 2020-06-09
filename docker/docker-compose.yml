@@ -1,0 +1,32 @@
+version: "3.6"
+services:
+  node:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: app
+    restart: always
+    environment:
+      - NODE_ENV=production
+    logging: &logging
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - node
+    networks:
+      - internal
+
+networks:
+  internal:
