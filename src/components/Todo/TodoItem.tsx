@@ -1,6 +1,5 @@
 import { Checkbox } from "antd";
-import React, { useContext } from "react";
-import { TodoContext } from "../../context/TodoContext";
+import React from "react";
 import { ITodo } from "../../context/todoReducer";
 
 type ProfileProps = {
@@ -8,9 +7,6 @@ type ProfileProps = {
 };
 
 export const TodoItem: React.FC<ProfileProps> = ({ todo }) => {
-  const { handlerChouseTodo, handlerCompleted, handlerDetail } = useContext(
-    TodoContext
-  );
   const classes = ["todo"];
 
   if (todo.completed) {
@@ -20,18 +16,13 @@ export const TodoItem: React.FC<ProfileProps> = ({ todo }) => {
   return (
     <div className={classes.join(" ")}>
       <Checkbox
-        onChange={() => handlerCompleted(todo.id)}
+        data-id={todo.id}
+        data-who="checkbox"
         checked={todo.completed}
         className="todo__status"
       />
 
-      <div
-        className="todo__title"
-        onClick={() => {
-          handlerChouseTodo(todo.id);
-          handlerDetail();
-        }}
-      >
+      <div className="todo__title" data-id={todo.id} data-who="title">
         {todo.title}
       </div>
     </div>
